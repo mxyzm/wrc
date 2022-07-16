@@ -1,4 +1,4 @@
-_base_ = './htc_without_semantic_r50_fpn_1x_coco.py'
+_base_ = './htc_r50_fpn_1x_coco_without_semantic.py'
 model = dict(
     roi_head=dict(
         semantic_roi_extractor=dict(
@@ -16,7 +16,6 @@ model = dict(
             num_classes=183,
             ignore_label=255,
             loss_weight=0.2)))
-data_root = '/home/ma-user/work/data/shuibao/merge/'
 img_norm_cfg = dict(
     mean=[63.10272151, 96.87820338, 76.34496829], std=[24.33635513, 23.11288992, 31.79807813], to_rgb=False)
 train_pipeline = [
@@ -31,7 +30,7 @@ train_pipeline = [
     dict(type='DefaultFormatBundle'),
     dict(
         type='Collect',
-        keys=['img', 'gt_bboxes', 'gt_labels']),
+        keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks', 'gt_semantic_seg']),
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
@@ -48,12 +47,8 @@ test_pipeline = [
             dict(type='Collect', keys=['img']),
         ])
 ]
+data_root = '/home/ma-user/work/wrc_htc/data/dataset_coco/'
 data = dict(
-    train=dict(
-        seg_prefix=data_root,
-        pipeline=train_pipeline),
+    train=dict(seg_prefix=data_root + 'stuffthingmaps', pipeline=train_pipeline),
     val=dict(pipeline=test_pipeline),
     test=dict(pipeline=test_pipeline))
-
-work_dir = "/home/ma-user/work/ckpt/shuibao_det/htc/"
-load_from = "/home/ma-user/work/ckpt/pre/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth"

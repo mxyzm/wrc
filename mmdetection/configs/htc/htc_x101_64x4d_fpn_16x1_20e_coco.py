@@ -16,3 +16,6 @@ data = dict(samples_per_gpu=1, workers_per_gpu=1)
 # learning policy
 lr_config = dict(step=[16, 19])
 runner = dict(type='EpochBasedRunner', max_epochs=20)
+
+load_from = "/home/ma-user/work/wrc_htc/pre/htc_x101_64x4d_fpn_16x1_20e_coco_20200318-b181fd7a.pth"
+

@@ -26,7 +26,7 @@ class ImageClassificationService(PTServingBaseService):
         self.model_name = model_name
         self.model_path = model_path
         print(self.model_path)
-        self.cfg = mmcv.Config.fromfile(self.model_path.replace('model_best.pth', '/configs/mask_rcnn/wrc.py'))
+        self.cfg = mmcv.Config.fromfile(self.model_path.replace('model_best.pth', '/configs/htc/htc_wrc.py'))
         print("model initing")
         # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model = init_detector(self.cfg, self.model_path, device="cpu")
