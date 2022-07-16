@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'CocoDataset'
-classes = ('_background_', '1', '2', '3', '4', '5', '6')
+classes = ('1', '2', '3', '4', '5', '6')
 data_root = '/home/ma-user/work/wrc_htc/data/dataset_coco/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -54,20 +54,20 @@ data = dict(
     train=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'annotations_train.json',
+        ann_file=data_root + 'annotations.json',
         img_prefix=data_root + 'images/',
         seg_prefix=data_root + 'stuffthingmaps',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'annotations_val.json',
+        ann_file=data_root + 'annotations.json',
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         classes=classes,
-        ann_file=data_root + 'annotations_val.json',
+        ann_file=data_root + 'annotations.json',
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline))
 evaluation = dict(metric=['bbox', 'segm'], save_best='auto')
