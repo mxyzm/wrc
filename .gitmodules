@@ -1,3 +1,9 @@
 [submodule "mmdetection"]
 	path = mmdetection
 	url = https://github.com/open-mmlab/mmdetection.git
+[submodule "data/cocosplit"]
+	path = data/cocosplit
+	url = https://github.com/mxyzm/cocosplit.git
+[submodule "data/cocostuffapi"]
+	path = data/cocostuffapi
+	url = https://github.com/mxyzm/cocostuffapi.git
